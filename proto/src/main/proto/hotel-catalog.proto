@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package catalog;
+
+option java_multiple_files = true;
+option java_package = "dev.aira.stayreserve.catalog";
+
+message HotelProto {
+  int64 id = 1;
+  string name = 2;
+  string description = 3;
+  string city = 4;
+  string state = 5;
+  string country = 6;
+  int32 stars = 7;
+  double price_per_night = 8;
+  bool available = 9;
+}
+
+message AddHotelRequest {
+  HotelProto vehicle = 1;
+}
+
+message AddHotelResponse {
+  int64 vehicle_id = 1;
+  string message = 2;
+}
+
+
+message ListAvailableHotelRequest {}
+
+message ListAvailableHotelResponse {
+  repeated HotelProto vehicles = 1;
+}
+
+message GetHotelByIdRequest {
+  int64 id = 1;
+}
+
+message GetHotelByIdResponse {
+  HotelProto vehicle = 1;
+}
+
+service CatalogService {
+  rpc AddVehicle(AddHotelRequest) returns (AddHotelResponse);
+  rpc ListAvailableVehicles(ListAvailableHotelRequest) returns (ListAvailableHotelResponse);
+  rpc GetVehicleById(GetHotelByIdRequest) returns (GetHotelByIdResponse);
+}
