@@ -22,9 +22,8 @@ WORKDIR /app
 
 COPY --from=build /app/stayreserve-aggregator-servic/target/*.jar app.jar
 
-EXPOSE 7575 5006
+EXPOSE 5006
 ENV SPRING_PROFILES_ACTIVE=docker
-ENV GRPC_SERVER_PORT=7575
 ENV JAVA_TOOL_OPTIONS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5006"
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
