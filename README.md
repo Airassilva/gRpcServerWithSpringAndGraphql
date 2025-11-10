@@ -49,7 +49,7 @@ O sistema utiliza uma arquitetura em camadas com comunicação GraphQL e gRPC:
                │ Protocol Buffers
                ↓
 ┌─────────────────────────────────────┐
-│  gRPC Server  (hotel-catalog)                        │                  │
+│  gRPC Server  (hotel-catalog)       │                 
 └──────────────┬──────────────────────┘
                │ SQL/ORM
                ↓
