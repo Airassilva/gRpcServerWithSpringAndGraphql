@@ -18,11 +18,11 @@ message HotelProto {
 }
 
 message AddHotelRequest {
-  HotelProto vehicle = 1;
+  HotelProto hotel = 1;
 }
 
 message AddHotelResponse {
-  int64 vehicle_id = 1;
+  int64 hotel_id = 1;
   string message = 2;
 }
 
@@ -30,7 +30,7 @@ message AddHotelResponse {
 message ListAvailableHotelRequest {}
 
 message ListAvailableHotelResponse {
-  repeated HotelProto vehicles = 1;
+  repeated HotelProto hotels = 1;
 }
 
 message GetHotelByIdRequest {
@@ -38,11 +38,11 @@ message GetHotelByIdRequest {
 }
 
 message GetHotelByIdResponse {
-  HotelProto vehicle = 1;
+  HotelProto hotel = 1;
 }
 
 service CatalogService {
-  rpc AddVehicle(AddHotelRequest) returns (AddHotelResponse);
-  rpc ListAvailableVehicles(ListAvailableHotelRequest) returns (ListAvailableHotelResponse);
-  rpc GetVehicleById(GetHotelByIdRequest) returns (GetHotelByIdResponse);
+  rpc AddHotel(AddHotelRequest) returns (AddHotelResponse);
+  rpc ListAvailableHotel(ListAvailableHotelRequest) returns (ListAvailableHotelResponse);
+  rpc GetHotelById(GetHotelByIdRequest) returns (GetHotelByIdResponse);
 }

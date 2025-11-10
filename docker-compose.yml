@@ -1,0 +1,29 @@
+services:
+  hotel-catalog:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: hotel-catalog
+    ports:
+      - "6565:6565"  #gRpc
+      - "5005:5005"  #debug
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - grpc.server.port=6565
+      - grpc.server.address=0.0.0.0
+      - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+
+  reservation:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: reservation
+    ports:
+      - "8080:8080"   # GraphQL
+      - "5006:5006"   #debug
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5006
+    depends_on:
+      - hotel-catalog
+

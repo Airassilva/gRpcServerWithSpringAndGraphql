@@ -50,11 +50,11 @@ message CompleteReservationResponse {
   int64 total_days = 2;
 }
 
-message GetReservationByVehicleIdRequest {
+message GetReservationByHotelIdRequest {
   int64 hotel_id = 1;
 }
 
-message GetReservationByVehicleIdResponse {
+message GetReservationByHotelIdResponse {
   ReservationProto reservation = 1;
 }
 
@@ -62,5 +62,5 @@ service ReservationService {
   rpc CreateReservation(CreateReservationRequest) returns (CreateReservationResponse);
   rpc GetReservation(GetReservationRequest) returns (GetReservationResponse);
   rpc CompleteReservation(CompleteReservationRequest) returns (CompleteReservationResponse);
-  rpc GetReservationByVehicleId(GetReservationByVehicleIdRequest) returns (GetReservationByVehicleIdResponse);
+  rpc GetReservationByHotelId(GetReservationByHotelIdRequest) returns (GetReservationByHotelIdResponse);
 }

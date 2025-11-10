@@ -1,0 +1,78 @@
+enum ReservationStatus {
+    UNKNOWN
+    CONFIRMED
+    PENDING
+    CANCELLED
+}
+
+type Hotel {
+    id: ID!
+    name: String!
+    description: String
+    city: String!
+    state: String!
+    country: String!
+    stars: Int!
+    pricePerNight: Float!
+    available: Boolean!
+}
+
+type Reservation {
+    reservationId: ID!
+    hotelId: ID!
+    userId: ID!
+    startDate: String!
+    endDate: String!
+    status: ReservationStatus!
+}
+
+type AddHotelResponse {
+    hotelId: ID!
+    message: String!
+}
+
+type CreateReservationResponse {
+    reservationId: ID!
+    message: String!
+}
+
+type CompleteReservationResponse {
+    message: String!
+    totalDays: Int!
+}
+
+type HotelAndReservationResponse {
+    hotel: Hotel
+    reservation: Reservation
+}
+
+input HotelInput {
+    name: String!
+    description: String
+    city: String!
+    state: String!
+    country: String!
+    stars: Int!
+    pricePerNight: Float!
+    available: Boolean!
+}
+
+input CreateReservationInput {
+    hotelId: ID!
+    userId: ID!
+    startDate: String!
+    endDate: String!
+}
+
+extend type Query {
+    listAvailableHotels: [Hotel!]!
+    getHotelById(id: ID!): Hotel
+    getReservationById(reservationId: ID!): Reservation
+    getHotelAndReservationById(hotelId: ID!): HotelAndReservationResponse!
+}
+
+extend type Mutation {
+    addHotel(hotel: HotelInput!): AddHotelResponse!
+    createReservation(reservation: CreateReservationInput!): CreateReservationResponse!
+    completeReservation(reservationId: ID!): CompleteReservationResponse!
+}

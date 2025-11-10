@@ -1,4 +1,4 @@
-package main.resources;
+package dev.aira.stayreserveaggregatorservic;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
